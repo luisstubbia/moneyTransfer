@@ -8,17 +8,17 @@ import com.moneyTransfer.model.User;
 import com.moneyTransfer.service.UserService;
 
 public class UserServiceImpl implements UserService {
-	
+
 	private UserDAO userDao;
-	
-	public UserServiceImpl(){
+
+	public UserServiceImpl() {
 		userDao = new UserDAOImpl();
 	}
 
 	@Override
 	public void addOrUpdateUser(User user) {
-		if(user != null){
-			if(user.getId() != null){
+		if (user != null) {
+			if (user.getId() != null) {
 				userDao.update(user);
 			} else {
 				userDao.add(user);
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(Long id) {
 		userDao.deleteById(id);
 	}
-	
+
 	@Override
 	public void deleteUser(User user) {
 		userDao.delete(user);

@@ -18,15 +18,14 @@ import javax.persistence.UniqueConstraint;
  *
  */
 @Entity
-@Table(name = "account", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"user_id","name"})})
-public class Account extends AbstractEntity{
+@Table(name = "account", uniqueConstraints = { @UniqueConstraint(columnNames = { "user_id", "name" }) })
+public class Account extends AbstractEntity {
 
 	@ManyToOne
-    @JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade=CascadeType.ALL)
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
 	private Set<Transaction> movements;
 
 	@Transient
@@ -39,7 +38,7 @@ public class Account extends AbstractEntity{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public Set<Transaction> getMovements() {
 		return movements;
 	}
@@ -47,7 +46,7 @@ public class Account extends AbstractEntity{
 	public void setMovements(Set<Transaction> movements) {
 		this.movements = movements;
 	}
-	
+
 	public PricingSummary getPricingSummary() {
 		return PricingSummary.build(movements);
 	}

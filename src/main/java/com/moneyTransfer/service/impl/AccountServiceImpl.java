@@ -10,17 +10,17 @@ import com.moneyTransfer.model.User;
 import com.moneyTransfer.service.AccountService;
 
 public class AccountServiceImpl implements AccountService {
-	
+
 	private AccountDAO accountDao;
-	
-	public AccountServiceImpl(){
+
+	public AccountServiceImpl() {
 		accountDao = new AccountDAOImpl();
 	}
 
 	@Override
 	public void addOrUpdateAccount(Account account) {
-		if(account != null){
-			if(account.getId() != null){
+		if (account != null) {
+			if (account.getId() != null) {
 				accountDao.update(account);
 			} else {
 				accountDao.add(account);
@@ -45,11 +45,11 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void addTransaction(Transaction transaction) {
-		
+
 	}
 
 	@Override
 	public void deleteTransaction(Transaction transaction) {
-		
+
 	}
 }

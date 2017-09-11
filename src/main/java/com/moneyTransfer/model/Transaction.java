@@ -16,21 +16,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "transaction")
 public class Transaction extends AbstractEntity {
-	
+
 	@ManyToOne
-    @JoinColumn(name = "account_id")
+	@JoinColumn(name = "account_id")
 	private Account account;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "account_to_id")
+	@JoinColumn(name = "account_to_id")
 	private Account accountTo;
-	
-	@Column(name="amount", nullable = false)
+
+	@Column(name = "amount", nullable = false)
 	private BigDecimal amount;
-	
-	@Column(name="type", nullable = false)
+
+	@Column(name = "type", nullable = false)
 	private TransactionType type;
-	
+
 	public Account getAccount() {
 		return account;
 	}
@@ -46,11 +46,11 @@ public class Transaction extends AbstractEntity {
 	public void setAccountTo(Account accountTo) {
 		this.accountTo = accountTo;
 	}
-	
+
 	public BigDecimal getAmount() {
 		return amount;
 	}
-	
+
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}

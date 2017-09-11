@@ -11,9 +11,10 @@ import com.moneyTransfer.model.Account;
  *
  */
 public interface AccountDAO {
-	
+
 	/**
 	 * Get list of accounts by user id.
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -21,24 +22,28 @@ public interface AccountDAO {
 
 	/**
 	 * Add account
+	 * 
 	 * @param account
 	 */
 	public void add(Account account);
-	
+
 	/**
 	 * Update account
+	 * 
 	 * @param account
 	 */
 	public Account update(Account account);
-	
+
 	/**
 	 * Delete account
+	 * 
 	 * @param account
 	 */
 	public void delete(Account account);
 
 	/**
 	 * Get accounts
+	 * 
 	 * @return
 	 */
 	public Set<Account> getAccounts();

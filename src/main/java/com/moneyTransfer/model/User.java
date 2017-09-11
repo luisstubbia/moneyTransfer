@@ -16,40 +16,38 @@ import javax.persistence.UniqueConstraint;
  *
  */
 @Entity
-@Table(name = "user", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "name")})
+@Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = "name") })
 public class User extends AbstractEntity {
 
-	
 	@Column
 	private String lastName;
-	
+
 	@Column
 	private String firstName;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade=CascadeType.ALL)
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Account> accounts;
-	
+
 	public String getLastName() {
 		return lastName;
 	}
-	
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
-	
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public Set<Account> getAccounts() {
 		return accounts;
 	}
-	
+
 	public void setAccounts(Set<Account> accounts) {
 		this.accounts = accounts;
 	}

@@ -1,6 +1,5 @@
 package com.moneyTransfer.dao.impl;
 
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -42,7 +41,7 @@ public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
 	@Override
 	public void deleteById(Long id) {
 		User user = findUser(id);
-		if(user != null){
+		if (user != null) {
 			Session session = getSession();
 			Transaction tx = session.beginTransaction();
 			session.delete(user);

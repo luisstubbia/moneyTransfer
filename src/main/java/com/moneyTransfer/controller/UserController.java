@@ -23,50 +23,50 @@ import com.moneyTransfer.util.ServiceException;
 public class UserController {
 
 	private UserService userService;
-	
-	public UserController(){
+
+	public UserController() {
 		userService = new UserServiceImpl();
 	}
-	
+
 	@GET
-    @Produces("application/json")
-    public Response getUsers() {
+	@Produces("application/json")
+	public Response getUsers() {
 		Set<User> users = userService.getUsers();
-        return Response.ok(users).build();
-    }
-	
+		return Response.ok(users).build();
+	}
+
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
 	public Response getUser(@PathParam("id") Long id) {
 		User user = userService.findUser(id);
-		if(user == null){
+		if (user == null) {
 			throw new ServiceException(new BussinesError(ErrorCode.USER_NOT_FOUND));
 		}
 		return Response.ok(user).build();
 	}
-	
-    @POST
-    @Path("/create")
-    @Consumes("application/json")
-    public Response addUser(User user){
-        userService.addOrUpdateUser(user);
-        return Response.ok().build();
-    }
-    
-    @PUT
-    @Path("/update")
-    @Consumes("application/json")
-    public Response updateUser(User user){
-        userService.addOrUpdateUser(user);
-        return Response.ok().build();
-    }
-    
-    @DELETE
-    @Path("/delete/{id}")
-    @Consumes("application/json")
-    public Response deleteUser(@PathParam("id") Long id) {
-        userService.deleteUser(id);
-        return Response.ok().build();
-    }
+
+	@POST
+	@Path("/create")
+	@Consumes("application/json")
+	public Response addUser(User user) {
+		userService.addOrUpdateUser(user);
+		return Response.ok().build();
+	}
+
+	@PUT
+	@Path("/update")
+	@Consumes("application/json")
+	public Response updateUser(User user) {
+		userService.addOrUpdateUser(user);
+		return Response.ok().build();
+	}
+
+	@DELETE
+	@Path("/delete/{id}")
+	@Consumes("application/json")
+	public Response deleteUser(@PathParam("id") Long id) {
+		userService.deleteUser(id);
+		return Response.ok().build();
+	}
 }

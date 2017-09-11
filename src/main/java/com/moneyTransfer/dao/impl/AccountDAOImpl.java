@@ -1,6 +1,5 @@
 package com.moneyTransfer.dao.impl;
 
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -19,7 +18,7 @@ import com.moneyTransfer.model.Account;
 @SuppressWarnings("unchecked")
 public class AccountDAOImpl extends AbstractDAO<Account> implements AccountDAO {
 
-	public Set<Account> getAccountsByUserId(Long id){
+	public Set<Account> getAccountsByUserId(Long id) {
 		Session session = getSession();
 		Query query = session.createQuery("from Account where user.id = :userId");
 		query.setLong("userId", id);

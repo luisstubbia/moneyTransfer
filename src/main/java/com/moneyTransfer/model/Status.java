@@ -6,18 +6,16 @@ package com.moneyTransfer.model;
  *
  */
 public enum Status {
-	
-	ACTIVE("ACTIVE"),
-	INACTIVE("INCATIVE"),
-	DELETED("DELETED");
-	
+
+	ACTIVE("ACTIVE"), INACTIVE("INCATIVE"), DELETED("DELETED");
+
 	private String name;
 
-	Status(String name){
+	Status(String name) {
 		this.name = name;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
 }

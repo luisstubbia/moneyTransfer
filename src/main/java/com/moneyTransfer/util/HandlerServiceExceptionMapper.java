@@ -12,16 +12,13 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class HandlerServiceExceptionMapper implements ExceptionMapper<ServiceException> {
-	
+
 	@Override
 	public Response toResponse(ServiceException exception) {
 		int status = 400;
 		if (exception.getErrors().size() == 1) {
 			status = exception.getErrors().get(0).getStatus();
 		}
-		return Response.status(status)
-				.entity(exception.getErrors())
-				.type(MediaType.APPLICATION_JSON_TYPE)
-				.build();
+		return Response.status(status).entity(exception.getErrors()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	}
 }

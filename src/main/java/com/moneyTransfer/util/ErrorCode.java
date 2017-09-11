@@ -7,16 +7,14 @@ package com.moneyTransfer.util;
  */
 public enum ErrorCode {
 
-	USER_NOT_FOUND("1001", "User not found.", 404), 
-	ACCOUNT_NOT_FOUND("1002", "Account not found.", 404), 
-	TX_NOT_FOUND("1003", "Transaction not found.", 404), 
-	
-	USER_MISSING_USERNAME("2001","Missing user name.", 400),
-	USER_MISSING_LASTNAME("2002","Missing user last name.", 400),
-	USER_MISSING_FIRSTNAME("2003","Missing user first name.", 400),
-	
+	USER_NOT_FOUND("1001", "User not found.", 404), ACCOUNT_NOT_FOUND("1002", "Account not found.",
+			404), TX_NOT_FOUND("1003", "Transaction not found.", 404),
+
+	USER_MISSING_USERNAME("2001", "Missing user name.", 400), USER_MISSING_LASTNAME("2002", "Missing user last name.",
+			400), USER_MISSING_FIRSTNAME("2003", "Missing user first name.", 400),
+
 	SERVICE_ERROR("3002", "Internal server error.", 500);
-	
+
 	private String code;
 	private String description;
 	private int status;

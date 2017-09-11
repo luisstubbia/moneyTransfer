@@ -13,19 +13,19 @@ import java.util.Set;
 public class PricingSummary {
 
 	private Map<TransactionType, BigDecimal> prices;
-	
+
 	/* Add any new price summary required */
-	
+
 	/**
 	 * Default constructor.
 	 */
-	public PricingSummary(){
+	public PricingSummary() {
 		prices = new HashMap<TransactionType, BigDecimal>(TransactionType.values().length);
-		for(TransactionType type : TransactionType.values()){
+		for (TransactionType type : TransactionType.values()) {
 			prices.put(type, BigDecimal.ZERO);
 		}
 	}
-	
+
 	public Map<TransactionType, BigDecimal> getPrices() {
 		return prices;
 	}
@@ -36,10 +36,10 @@ public class PricingSummary {
 
 	public static PricingSummary build(Set<Transaction> movements) {
 		PricingSummary pricingSummary = new PricingSummary();
-		if(movements != null && !movements.isEmpty()){
-			movements.forEach(mov->{
+		if (movements != null && !movements.isEmpty()) {
+			movements.forEach(mov -> {
 				BigDecimal amount = pricingSummary.getPrices().get(mov.getType());
-				if(amount != null){
+				if (amount != null) {
 					amount.add(mov.getAmount());
 				}
 			});

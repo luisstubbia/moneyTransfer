@@ -10,14 +10,11 @@ import javax.ws.rs.ext.Provider;
 
 @Provider
 public class HandlerExceptionMapper implements ExceptionMapper<Throwable> {
-	
+
 	@Override
 	public Response toResponse(Throwable exception) {
 		BussinesError error = new BussinesError(exception.getMessage(), parserStackTrace(exception));
-		return Response.status(500)
-				.entity(error)
-				.type(MediaType.APPLICATION_JSON_TYPE)
-				.build();
+		return Response.status(500).entity(error).type(MediaType.APPLICATION_JSON_TYPE).build();
 	}
 
 	/**

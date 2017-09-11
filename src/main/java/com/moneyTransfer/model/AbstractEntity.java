@@ -16,40 +16,40 @@ import javax.persistence.Version;
  */
 @MappedSuperclass
 public abstract class AbstractEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
 	private Long id;
-	
+
 	@Column(name = "name", nullable = false, unique = true, length = 50)
 	private String name;
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private Status status;
 
 	@Column(name = "creation_date")
 	private Date creationDate;
-	
+
 	@Version
 	@Column(name = "lock_version")
 	private Long version;
-	
+
 	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -77,7 +77,7 @@ public abstract class AbstractEntity {
 	public void setVersion(Long version) {
 		this.version = version;
 	}
-	
+
 	public boolean isEnabled() {
 		return enabled;
 	}
