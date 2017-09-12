@@ -54,4 +54,11 @@ public interface UserDAO {
 	 * @return
 	 */
 	public Set<User> getUsers();
+
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public User findByUserName(String name);
 }

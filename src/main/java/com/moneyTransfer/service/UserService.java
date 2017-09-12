@@ -40,4 +40,11 @@ public interface UserService {
 	 * @param user
 	 */
 	public User findUser(Long id);
+	
+	/**
+	 * Find by name
+	 * @param name
+	 * @return 
+	 */
+	public User findUserByName(String name);
 }

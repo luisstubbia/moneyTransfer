@@ -1,5 +1,6 @@
 package com.moneyTransfer.model;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * @author luis.stubbia
@@ -22,11 +25,12 @@ import javax.persistence.UniqueConstraint;
 public class Account extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
+	@JsonIgnore
 	private User user;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<Transaction> movements;
+	private Set<Transaction> movements = new LinkedHashSet<Transaction>();
 
 	@Transient
 	private PricingSummary pricingSummary;

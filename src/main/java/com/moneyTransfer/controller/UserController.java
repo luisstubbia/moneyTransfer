@@ -25,13 +25,14 @@ public class UserController {
 	private UserService userService;
 
 	public UserController() {
-		userService = new UserServiceImpl();
+		userService = UserServiceImpl.instance();
 	}
 
 	@GET
 	@Produces("application/json")
 	public Response getUsers() {
 		Set<User> users = userService.getUsers();
+		users.forEach(us->{us.getAccounts().forEach(ac->{ac.setMovements(null); });});
 		return Response.ok(users).build();
 	}
 
@@ -50,6 +51,9 @@ public class UserController {
 	@Path("/create")
 	@Consumes("application/json")
 	public Response addUser(User user) {
+		if(!user.getAccounts().isEmpty()){
+			user.getAccounts().forEach(ac->{ac.setUser(user);});
+		}
 		userService.addOrUpdateUser(user);
 		return Response.ok().build();
 	}
@@ -59,7 +63,7 @@ public class UserController {
 	@Consumes("application/json")
 	public Response updateUser(User user) {
 		userService.addOrUpdateUser(user);
-		return Response.ok().build();
+		return Response.ok(user).build();
 	}
 
 	@DELETE

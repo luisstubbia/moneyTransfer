@@ -10,9 +10,10 @@ import com.moneyTransfer.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	private UserDAO userDao;
-
-	public UserServiceImpl() {
-		userDao = new UserDAOImpl();
+	private static UserService userService = new UserServiceImpl(); 
+	
+	private UserServiceImpl() {
+		userDao = UserDAOImpl.instance();
 	}
 
 	@Override
@@ -44,5 +45,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUser(Long id) {
 		return userDao.findUser(id);
+	}
+
+	public static UserService instance() {
+		return userService;
+	}
+
+	@Override
+	public User findUserByName(String name) {
+		return userDao.findByUserName(name);
+		
 	}
 }

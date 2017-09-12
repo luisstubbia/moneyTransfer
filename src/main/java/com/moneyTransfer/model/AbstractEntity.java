@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * @author luis.stubbia
@@ -22,20 +24,23 @@ public abstract class AbstractEntity {
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "name", nullable = false, unique = true, length = 50)
+	@Column(name = "name", nullable = false)
 	private String name;
 
 	@Column(name = "status")
 	private Status status;
 
 	@Column(name = "creation_date")
+	@JsonIgnore
 	private Date creationDate;
 
 	@Version
 	@Column(name = "lock_version")
+	@JsonIgnore
 	private Long version;
 
 	@Column(name = "ENABLED", nullable = false)
+	@JsonIgnore
 	private boolean enabled;
 
 	public Long getId() {

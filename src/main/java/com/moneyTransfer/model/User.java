@@ -1,5 +1,6 @@
 package com.moneyTransfer.model;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,7 @@ public class User extends AbstractEntity {
 	private String firstName;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Account> accounts;
+	private Set<Account> accounts = new LinkedHashSet<Account>();
 
 	public String getLastName() {
 		return lastName;

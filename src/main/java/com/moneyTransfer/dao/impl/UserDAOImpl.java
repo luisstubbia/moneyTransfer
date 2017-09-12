@@ -19,6 +19,10 @@ import com.moneyTransfer.model.User;
 @SuppressWarnings("unchecked")
 public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
 
+	private static UserDAO userDao = new UserDAOImpl();
+	
+	private UserDAOImpl(){}
+	
 	@Override
 	public User findUser(Long id) {
 		Session session = getSession();
@@ -29,6 +33,16 @@ public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
 		return user;
 	}
 
+	@Override
+	public User findByUserName(String name) {
+		Session session = getSession();
+		Query query = session.createQuery("from User where name = :name");
+		query.setString("name", name);
+		User user = (User) query.uniqueResult();
+		session.close();
+		return user;
+	}
+	
 	@Override
 	public Set<User> getUsers() {
 		Session session = getSession();
@@ -48,5 +62,9 @@ public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
 			tx.commit();
 			session.close();
 		}
+	}
+
+	public static UserDAO instance() {
+		return userDao;
 	}
 }

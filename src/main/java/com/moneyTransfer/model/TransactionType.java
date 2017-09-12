@@ -7,7 +7,7 @@ package com.moneyTransfer.model;
  */
 public enum TransactionType {
 
-	DEBIT("DEBIT"), CREDIT("CREDIT");
+	DEBIT("DEBIT"), CREDIT("CREDIT"), AMOUNT("AMOUNT");
 
 	private String name;
 

@@ -6,7 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
@@ -15,14 +18,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "transaction")
-public class Transaction extends AbstractEntity {
+public class Transaction extends AbstractEntity implements Cloneable {
 
 	@ManyToOne
 	@JoinColumn(name = "account_id")
+	@JsonIgnore
 	private Account account;
 
 	@ManyToOne
 	@JoinColumn(name = "account_to_id")
+	@JsonIgnore
 	private Account accountTo;
 
 	@Column(name = "amount", nullable = false)
@@ -30,6 +35,11 @@ public class Transaction extends AbstractEntity {
 
 	@Column(name = "type", nullable = false)
 	private TransactionType type;
+
+	@OneToOne
+	@JoinColumn(name = "ref_id")
+	@JsonIgnore
+	private Transaction ref;
 
 	public Account getAccount() {
 		return account;
@@ -61,5 +71,28 @@ public class Transaction extends AbstractEntity {
 
 	public void setType(TransactionType type) {
 		this.type = type;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+	
+	public Transaction getRef() {
+		return ref;
+	}
+
+	public void setRef(Transaction ref) {
+		this.ref = ref;
+	}
+	
+	@Override
+	public String toString(){
+		StringBuilder st = new StringBuilder();
+		st.append(type.name());
+		st.append(": ");
+		st.append(account.getName());
+		st.append(" --> ");
+		st.append(accountTo.getName());
+		return st.toString();
 	}
 }

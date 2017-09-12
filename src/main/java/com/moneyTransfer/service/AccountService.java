@@ -39,15 +39,30 @@ public interface AccountService {
 
 	/**
 	 * Add transaction
+	 * @param toId 
+	 * @param fromId 
 	 * 
 	 * @param transaction
+	 * @return 
 	 */
-	public void addTransaction(Transaction transaction);
+	public void addTransaction(Long fromId, Long toId, Transaction transaction);
 
 	/**
-	 * delete transaction
-	 * 
-	 * @param transaction
+	 * find account
+	 * @param id
+	 * @return account
 	 */
-	public void deleteTransaction(Transaction transaction);
+	public Account findAccount(Long id);
+
+	/**
+	 * Delete account by id
+	 * @param id
+	 */
+	void deleteAccount(Long id);
+
+	/**
+	 * Delete transaction by id
+	 * @param Id
+	 */
+	void deleteTransaction(Long Id);
 }

@@ -12,9 +12,10 @@ import com.moneyTransfer.service.AccountService;
 public class AccountServiceImpl implements AccountService {
 
 	private AccountDAO accountDao;
+	private static AccountService accountService = new AccountServiceImpl();
 
-	public AccountServiceImpl() {
-		accountDao = new AccountDAOImpl();
+	private AccountServiceImpl() {
+		accountDao = AccountDAOImpl.instance();
 	}
 
 	@Override
@@ -32,6 +33,11 @@ public class AccountServiceImpl implements AccountService {
 	public void deleteAccount(Account account) {
 		accountDao.delete(account);
 	}
+	
+	@Override
+	public void deleteAccount(Long id) {
+		accountDao.deleteById(id);
+	}
 
 	@Override
 	public Set<Account> getAccountsByUser(User user) {
@@ -44,12 +50,21 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void addTransaction(Transaction transaction) {
-
+	public Account findAccount(Long id) {
+		return accountDao.findAccount(id);
 	}
-
+	
 	@Override
-	public void deleteTransaction(Transaction transaction) {
-
+	public void deleteTransaction(Long Id) {
+		accountDao.rollbackTransaction(Id);
+	}
+	
+	@Override
+	public void addTransaction(Long fromId, Long toId, Transaction transaction) {
+		accountDao.addTransaction(fromId, toId, transaction);
+	}
+	
+	public static AccountService instance(){
+		return accountService;
 	}
 }

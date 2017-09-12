@@ -40,9 +40,13 @@ public class PricingSummary {
 			movements.forEach(mov -> {
 				BigDecimal amount = pricingSummary.getPrices().get(mov.getType());
 				if (amount != null) {
-					amount.add(mov.getAmount());
+					BigDecimal total = amount.add(mov.getAmount());
+					pricingSummary.getPrices().put(mov.getType(), total);
 				}
 			});
+			BigDecimal amount = pricingSummary.getPrices().get(TransactionType.CREDIT)
+					.subtract(pricingSummary.getPrices().get(TransactionType.DEBIT));
+			pricingSummary.getPrices().put(TransactionType.AMOUNT, amount);
 		}
 		return pricingSummary;
 	}
